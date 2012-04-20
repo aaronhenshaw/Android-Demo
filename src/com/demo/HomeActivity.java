@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.demo.ui.CreateTweetActivity;
 import com.demo.util.DrawableManager;
@@ -53,7 +54,7 @@ public class HomeActivity extends Activity {
         mRefresh.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				
+				new TwitterAsync().execute();
 			}
 		});
         lv.setOnScrollListener(new OnScrollListener() {		
@@ -147,11 +148,17 @@ public class HomeActivity extends Activity {
 		@Override
 		protected void onPostExecute(ResponseList<twitter4j.Status> result) {
 			try {
+				if (result == null) {
+					Toast t = Toast.makeText(HomeActivity.this, "Something went wrong...", Toast.LENGTH_LONG);
+					t.show();
+					return;
+				}
 				mLoading.setVisibility(View.GONE);
 	    		lv.setVisibility(View.VISIBLE);
 	    		mTwitterAdapter = new TwitterArrayAdapter(HomeActivity.this, R.layout.component_tweet, 0, result);
 	    		lv.setAdapter(mTwitterAdapter);
 			} catch(Exception ex) {
+				
 				ex.printStackTrace();
 			}
 		}
