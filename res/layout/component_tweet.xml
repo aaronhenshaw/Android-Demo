@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:orientation="vertical" >
+
+    <ImageView 
+    	android:layout_width="?android:attr/listPreferredItemHeight"
+    	android:layout_height="?android:attr/listPreferredItemHeight"
+    	android:id="@+id/tweeter_image"    
+    	android:src="@android:drawable/btn_star"
+    	android:contentDescription="@string/profile_image_desc"    	
+    />
+    <LinearLayout 
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:layout_toRightOf="@+id/tweeter_image"    
+    >
+        <TextView
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:id="@+id/tweeter"    
+        />
+        <TextView
+        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"   
+        	android:id="@+id/tweet" 
+        />        
+    </LinearLayout>
+</RelativeLayout>
